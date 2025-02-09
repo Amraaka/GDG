@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Carousel with QR</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 20px;
+            background: transparent;
+            position: absolute;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            width: 160px;
+            height: 100px;
+            margin: 20px 40px;
+        }
+
+        .logo1 {
+            width: 120px;
+            height: 100px;
+            margin: 0 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin: 0;
+        }
+
+        .carousel {
+            width: 100vw;
+            height: 120vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .carousel img {
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .carousel img:nth-child(1) { animation: slide 20s infinite 0s; }
+        .carousel img:nth-child(2) { animation: slide 20s infinite 2s; }
+        .carousel img:nth-child(3) { animation: slide 20s infinite 4s; }
+        .carousel img:nth-child(4) { animation: slide 20s infinite 6s; }
+        .carousel img:nth-child(5) { animation: slide 20s infinite 8s; }
+        .carousel img:nth-child(6) { animation: slide 20s infinite 10s; }
+        .carousel img:nth-child(7) { animation: slide 20s infinite 12s; }
+        .carousel img:nth-child(8) { animation: slide 20s infinite 14s; }
+        .carousel img:nth-child(9) { animation: slide 20s infinite 16s; }
+        .carousel img:nth-child(10) { animation: slide 20s infinite 18s; }
+
+        @keyframes slide {
+            0% { opacity: 1; }
+            20% { opacity: 1; }
+            25% { opacity: 0; }
+            100% { opacity: 0; }
+        }
+
+        /* Modern Glass Button Style */
+        .glass-button {
+            display: inline-block;
+            padding: 20px 40px;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            background: rgba(66, 66, 66, 0.6);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .glass-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(122, 122, 122, 0.6),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .glass-button:hover:before {
+            left: 100%;
+        }
+
+        .glass-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.37);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .glass-button:active {
+            transform: translateY(2px);
+        }
+
+        /* Button Positions */
+        .register-btn {
+            position: absolute;
+            bottom: 200px;
+            left: 32%;
+            transform: translateX(-2%);
+            z-index: 1000;
+        }
+
+        .register1-btn {
+            position: absolute;
+            bottom: 200px;
+            left: 52%;
+            transform: translateX(-2%);
+            z-index: 1000;
+        }
+
+        /* Back Button Style */
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 12px 24px;
+            font-size: 18px;
+            background: rgba(66, 133, 244, 0.8);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-btn:hover {
+            background: rgba(66, 133, 244, 0.9);
+            transform: translateY(-2px);
+        }
+
+        .qr-view, .qr-view1 {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: white;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .qr-view img {
+            width: 1000px;
+            height: 1000px;
+        }
+
+        .qr-view1 img {
+            width: 800px;
+            height: 800px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header-container">
+        <img src="logo1.png" alt="Left Logo" class="logo">
+        <h1>DevFest MUST 2024</h1>
+        <img src="logo2.png" alt="Right Logo" class="logo1">
+    </div>
+
+    <div class="carousel">
+        <img src="1.jpg" alt="Image 1">
+        <img src="2.jpg" alt="Image 2">
+        <img src="3.jpg" alt="Image 3">
+        <img src="4.jpg" alt="Image 4">
+        <img src="5.jpg" alt="Image 5">
+        <img src="6.jpg" alt="Image 6">
+        <img src="7.jpg" alt="Image 7">
+        <img src="8.jpg" alt="Image 8">
+        <img src="9.jpg" alt="Image 9">
+        <img src="10.jpg" alt="Image 10">
+    </div>
+
+    <button class="glass-button register-btn" onclick="showQR()">Клубт элсэх</button>
+    <button class="glass-button register1-btn" onclick="showQR1()">Built with AI бүртгүүлэх</button>
+
+    <div class="qr-view">
+        <button class="back-btn" onclick="hideQR()">Буцах</button>
+        <img src="qr.png" alt="QR Code">
+    </div>
+
+    <div class="qr-view1">
+        <button class="back-btn" onclick="hideQR1()">Буцах</button>
+        <img src="qr1.png" alt="QR Code">
+    </div>
+
+    <script>
+        function showQR() {
+            document.querySelector('.carousel').style.visibility = 'hidden';
+            document.querySelector('.register-btn').style.visibility = 'hidden';
+            document.querySelector('.register1-btn').style.visibility = 'hidden';
+            document.querySelector('.qr-view').style.display = 'flex';
+        }
+
+        function hideQR() {
+            document.querySelector('.carousel').style.visibility = 'visible';
+            document.querySelector('.register-btn').style.visibility = 'visible';
+            document.querySelector('.register1-btn').style.visibility = 'visible';
+            document.querySelector('.qr-view').style.display = 'none';
+        }
+
+        function showQR1() {
+            document.querySelector('.carousel').style.visibility = 'hidden';
+            document.querySelector('.register-btn').style.visibility = 'hidden';
+            document.querySelector('.register1-btn').style.visibility = 'hidden';
+            document.querySelector('.qr-view1').style.display = 'flex';
+        }
+
+        function hideQR1() {
+            document.querySelector('.carousel').style.visibility = 'visible';
+            document.querySelector('.register-btn').style.visibility = 'visible';
+            document.querySelector('.register1-btn').style.visibility = 'visible';
+            document.querySelector('.qr-view1').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
