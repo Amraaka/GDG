@@ -45,41 +45,47 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
             margin: 0;
         }
-
         .carousel {
-            width: 100vw;
-            height: 120vh;
-            overflow: hidden;
             position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
         }
-
+        
         .carousel img {
-            width: 100vw;
-            height: 100vh;
-            object-fit: cover;
             position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             opacity: 0;
-            transition: opacity 1.5s ease-in-out;
+            transition: opacity 0.5s ease-in-out;
         }
-
-        .carousel img:nth-child(1) { animation: slide 20s infinite 0s; }
-        .carousel img:nth-child(2) { animation: slide 20s infinite 2s; }
-        .carousel img:nth-child(3) { animation: slide 20s infinite 4s; }
-        .carousel img:nth-child(4) { animation: slide 20s infinite 6s; }
-        .carousel img:nth-child(5) { animation: slide 20s infinite 8s; }
-        .carousel img:nth-child(6) { animation: slide 20s infinite 10s; }
-        .carousel img:nth-child(7) { animation: slide 20s infinite 12s; }
-        .carousel img:nth-child(8) { animation: slide 20s infinite 14s; }
-        .carousel img:nth-child(9) { animation: slide 20s infinite 16s; }
-        .carousel img:nth-child(10) { animation: slide 20s infinite 18s; }
-
+        
         @keyframes slide {
-            0% { opacity: 1; }
-            20% { opacity: 1; }
-            25% { opacity: 0; }
-            100% { opacity: 0; }
+            0%, 8% {
+                opacity: 0;
+            }
+            10%, 18% {
+                opacity: 1;
+            }
+            20%, 100% {
+                opacity: 0;
+            }
         }
-
+        
+        .carousel img:nth-child(1) { animation: slide 26s infinite 0s; }
+        .carousel img:nth-child(2) { animation: slide 26s infinite 2s; }
+        .carousel img:nth-child(3) { animation: slide 26s infinite 4s; }
+        .carousel img:nth-child(4) { animation: slide 26s infinite 6s; }
+        .carousel img:nth-child(5) { animation: slide 26s infinite 8s; }
+        .carousel img:nth-child(6) { animation: slide 26s infinite 10s; }
+        .carousel img:nth-child(7) { animation: slide 26s infinite 12s; }
+        .carousel img:nth-child(8) { animation: slide 26s infinite 14s; }
+        .carousel img:nth-child(9) { animation: slide 26s infinite 16s; }
+        .carousel img:nth-child(10) { animation: slide 26s infinite 18s; }
+        .carousel img:nth-child(11) { animation: slide 26s infinite 20s; }
+        .carousel img:nth-child(12) { animation: slide 26s infinite 22s; }
+        .carousel img:nth-child(13) { animation: slide 26s infinite 24s; }
         /* Modern Glass Button Style */
         .glass-button {
             display: inline-block;
@@ -132,8 +138,8 @@
         /* Button Positions */
         .register-btn {
             position: absolute;
-            bottom: 200px;
-            left: 32%;
+            bottom: 140px;
+            left: 44%;
             transform: translateX(-2%);
             z-index: 1000;
         }
@@ -211,10 +217,13 @@
         <img src="8.jpg" alt="Image 8">
         <img src="9.jpg" alt="Image 9">
         <img src="10.jpg" alt="Image 10">
+        <img src="11.jpg" alt="Image 8">
+        <img src="12.jpg" alt="Image 9">
+        <img src="13.jpg" alt="Image 10">
     </div>
 
     <button class="glass-button register-btn" onclick="showQR()">Клубт элсэх</button>
-    <button class="glass-button register1-btn" onclick="showQR1()">Built with AI бүртгүүлэх</button>
+    <!-- <button class="glass-button register1-btn" onclick="showQR1()">Built with AI бүртгүүлэх</button> -->
 
     <div class="qr-view">
         <button class="back-btn" onclick="hideQR()">Буцах</button>
